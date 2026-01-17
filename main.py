@@ -1,3 +1,4 @@
+from register import *
 print("WELCOME TO THE BANK")
 while True:
     try:
@@ -6,7 +7,8 @@ while True:
                            "2. SingnIn\n"
                            "Enter your choice(1/2): "))
         if register == 1 or register== 2:
-            pass
+            if register==1:
+                SignUp()
         else:
             print("Invalid Choice, Please give the valid input.\n")
 

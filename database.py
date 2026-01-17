@@ -29,3 +29,6 @@ def customerTable():
 
 if __name__ == "__main__":
     customerTable()
+
+def db_querry(str):
+    return cursor.execute(str)
