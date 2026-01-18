@@ -30,5 +30,11 @@ def customerTable():
 if __name__ == "__main__":
     customerTable()
 
-def db_querry(str):
-    return cursor.execute(str)
+def db_querry(query):
+    cursor.execute(query)
+    return cursor.fetchall()   
+
+
+def db_execute(query):
+    cursor.execute(query)
+    mydb.commit()
