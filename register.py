@@ -40,3 +40,29 @@ def SignUp():
 
     print("Account created successfully!")
     print("Your Account Number:", account_number)
+
+
+
+
+def SignIn():
+    attempts = 3
+    while attempts > 0:
+        username = input("Enter Username: ").strip()
+        password = input("Enter Password: ").strip()
+
+        password_hash = hashlib.sha256(password.encode()).hexdigest()
+
+        result = db_querry(
+            "SELECT * FROM customers WHERE username=%s AND password_hash=%s",
+            (username, password_hash)
+        )
+
+        if result:
+            print("Sign In Successful.")
+            return True
+        else:
+            attempts -= 1
+            print(f"Incorrect username or password. Attempts left: {attempts}")
+
+    print("Login failed. Try again later.")
+    return False

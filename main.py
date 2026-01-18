@@ -9,8 +9,12 @@ while True:
         if register == 1 or register== 2:
             if register==1:
                 SignUp()
+            if register==2:
+                SignIn()
         else:
             print("Invalid Choice, Please give the valid input.\n")
+
+        
 
     except ValueError:
         print("Invalid input Try agian.")
