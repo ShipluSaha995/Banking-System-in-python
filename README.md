@@ -2,7 +2,7 @@
 
 A **console-based Banking Management System** built using **Python** and **MySQL** that simulates real-world banking operations such as account creation, secure login, deposits, withdrawals, money transfers, and transaction history management.
 
-This project demonstrates **database integration**, **secure password handling**, and **modular Python programming**, making it perfect for learning backend development and showcasing in portfolios or CVs.
+This project demonstrates **database integration**, **secure password handling**, and **modular Python programming**.
 
 ---
 
