@@ -54,6 +54,11 @@ def SignUp():
         )
     )
 
+    db_execute(
+        "INSERT INTO accounts (account_number, balance) VALUES (%s, 0)",
+        (account_number,)
+    )
+
     print("Account created successfully!")
     print("Your Account Number:", account_number)
 
@@ -68,16 +73,15 @@ def SignIn():
         password_hash = hashlib.sha256(password.encode()).hexdigest()
 
         result = db_querry(
-            "SELECT * FROM customers WHERE username=%s AND password_hash=%s",
+            "SELECT account_number FROM customers WHERE username=%s AND password_hash=%s",
             (username, password_hash)
         )
 
         if result:
             print("Sign In Successful.")
-            return True
+            return result[0][0]  
         else:
             attempts -= 1
             print(f"Incorrect username or password. Attempts left: {attempts}")
 
-    print("Login failed. Try again later.")
-    return False
+    return None

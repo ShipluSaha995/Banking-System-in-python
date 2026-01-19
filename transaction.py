@@ -47,21 +47,75 @@ def deposit(account_number):
 
 
 def withdraw(account_number):
-    amount=float(input("Wthdrawl Amount: "))
-    balance=check_balance(account_number)
+    amount = float(input("Withdraw Amount: "))
+    balance = check_balance(account_number)
 
-    if amount>balance:
+    if amount <= 0:
+        print("Invalid amount.")
+        return
+
+    if amount > balance:
         print("Insufficient Balance.")
         return
+
     
     db_execute(
-        "UPDATE accounts SET balance=balance-%s WHERE account_number=%s",
+        "UPDATE accounts SET balance = balance - %s WHERE account_number = %s",
         (amount, account_number)
     )
 
+    
     db_execute(
-        "INSERT INTO transactions (account_number, type, amount) VALUES (%s, 'DEPOSIT', %s)",
-        (account_number, amount)
+        "INSERT INTO transactions (account_number, type, amount) VALUES (%s, %s, %s)",
+        (account_number, "WITHDRAW", amount)
     )
 
-    print("Withdrawl Successfull.\n")
+    print("Withdrawal successful.")
+
+
+
+def transfer(sender):
+    receiver = input("Recivers Account Number: ")
+    amount = float(input("Amount: "))
+
+    if amount <= 0:
+        print("Invalid amount.")
+        return
+
+    if amount > check_balance(sender):
+        print("Insufficient Balance.")
+        return
+
+   
+    db_execute(
+        "UPDATE accounts SET balance = balance - %s WHERE account_number = %s",
+        (amount, sender)
+    )
+
+    
+    db_execute(
+        "UPDATE accounts SET balance = balance + %s WHERE account_number = %s",
+        (amount, receiver)
+    )
+
+   
+    db_execute(
+        "INSERT INTO transactions (account_number, type, amount) VALUES (%s, 'TRANSFER_OUT', %s)",
+        (sender, amount)
+    )
+
+    db_execute(
+        "INSERT INTO transactions (account_number, type, amount) VALUES (%s, 'TRANSFER_IN', %s)",
+        (receiver, amount)
+    )
+
+    print("Transfer Successful.")
+
+
+def history(account_number):
+    rows=db_querry(
+        "SELECT type, amount, date FROM transactions WHERE account_number=%s",
+        (account_number,)
+    )
+    for r in rows:
+        print(r)
