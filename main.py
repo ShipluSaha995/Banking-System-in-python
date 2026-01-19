@@ -1,4 +1,6 @@
 from register import *
+from transaction import *
+
 print("WELCOME TO THE BANK")
 while True:
     try:
@@ -10,7 +12,26 @@ while True:
             if register==1:
                 SignUp()
             if register==2:
-                SignIn()
+               acc= SignIn()
+               if acc:
+                   while True:
+                       print(
+                           """
+                           1. Check Balance.
+                           2. Deposit.
+                           3. Withdraw. 
+                           
+                           
+                           """
+                       )
+                       choice=input("Select your Choice: ")
+                       if choice=="1":
+                           print("Balance: ", check_balance(acc))
+                       elif choice=="2":
+                            deposit(acc)
+                       elif choice=="3":
+                           withdraw(acc)
+                           
         else:
             print("Invalid Choice, Please give the valid input.\n")
 
