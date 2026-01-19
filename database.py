@@ -23,6 +23,7 @@ def customerTable():
             national_id BIGINT,
             dob DATE,
             contact VARCHAR(15),
+            mail VARCHAR(50),
             status TINYINT(1)
         )
     """)

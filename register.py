@@ -20,6 +20,7 @@ def SignUp():
     nid = int(input("National ID Number: "))
     dob = input("Date Of Birth (YYYY-MM-DD): ")
     contact = input("Contact Number: ")
+    mail= input("Mail Address: ")
 
     while True:
         account_number = random.randint(100000000, 999999999)
@@ -33,9 +34,9 @@ def SignUp():
         """
         INSERT INTO customers
         (username, account_number, password_hash, name, age, address,
-         division, national_id, dob, contact, status)
+         division, national_id, dob, contact, mail, status)
         VALUES
-        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """,
         (
             user_name,
@@ -48,6 +49,7 @@ def SignUp():
             nid,
             dob,
             contact,
+            mail,
             1
         )
     )
