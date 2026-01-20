@@ -3,7 +3,7 @@ import mysql.connector as sql
 mydb = sql.connect(
     host="localhost",
     user="root",
-    password="your database password",
+    password="!@**Data**1621101##@!",
     database="bank"
 )
 

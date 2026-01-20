@@ -92,8 +92,6 @@ pip install mysql-connector-python
 
 # 🗄️ MySQL Workbench Commands for Banking Management System
 
-This README provides the basic **MySQL commands** to set up and verify the database for the Banking Management System project.
-
 ---
 
 ## 1️⃣ Create the Database
